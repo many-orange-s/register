@@ -1,0 +1,16 @@
+mysql:
+  host: "127.0.0.1"
+  user: "root"
+  port : 3307
+  password: "557320"
+  maxopen: 100
+  maxfree: 50
+
+log:
+  filename: "daily.log"
+  level: "debug"
+  max_size: 5
+  max_age: 30
+  max_backups: 5
+
+
