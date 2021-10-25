@@ -29,7 +29,7 @@ func main() {
 	if err != nil {
 		log.Printf("%+v", err)
 	}
-	defer dao.Cloce()
+	defer dao.DBCloce()
 	//redis的初始化
 
 	//router的使用
