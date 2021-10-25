@@ -18,7 +18,7 @@ import (
 
 var lg *zap.Logger
 
-func Init(logconf *model.LogConfig) (err error) {
+func Init(logconf *model.LogConfig, mode string) (err error) {
 	//日志的两个参数获取
 	encoder := getencoder()
 	writersyncer := getsyncer(
@@ -27,16 +27,27 @@ func Init(logconf *model.LogConfig) (err error) {
 		logconf.MaxAge,
 		logconf.Maxbackups,
 	)
+
 	//获取配置中的level
 	var l = new(zapcore.Level)
 	err = l.UnmarshalText([]byte(viper.GetString("log.level")))
 	if err != nil {
-
-		return
+		return model.ErrorUnmarshalLevel
 	}
-	//三个变量结合
-	core := zapcore.NewCore(encoder, writersyncer, l)
+
+	//mode决定输出
+	var core zapcore.Core
+	if mode == "dev" {
+		//获取在可以看懂的
+		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
+		core = zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel)
+	} else {
+		//三个变量结合
+		core = zapcore.NewCore(encoder, writersyncer, l)
+	}
+
 	lg = zap.New(core, zap.AddCaller())
+
 	//替换全局变量
 	zap.ReplaceGlobals(lg)
 	return

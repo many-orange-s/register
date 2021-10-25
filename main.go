@@ -6,26 +6,28 @@ import (
 	"bluebull/router"
 	"bluebull/setting"
 	"go.uber.org/zap"
+	"log"
 )
 
 func main() {
 	//配置文件的读取
 	err := setting.Init()
 	if err != nil {
-
+		log.Printf("%+v", err)
+		return
 	}
 
 	//日志设置
-	err = logger.Init(setting.Conf.LogConfig)
+	err = logger.Init(setting.Conf.LogConfig, setting.Conf.Mode)
 	if err != nil {
-
+		log.Printf("%+v", err)
 	}
 	defer zap.L().Sync()
 
 	//mysql的初始化
 	err = dao.MysqlInit(setting.Conf.MysqlConfig)
 	if err != nil {
-
+		log.Printf("%+v", err)
 	}
 	defer dao.Cloce()
 	//redis的初始化

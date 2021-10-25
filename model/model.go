@@ -1,6 +1,7 @@
 package model
 
 type Con struct {
+	Mode         string `mapstructure:"mode"`
 	*LogConfig   `mapstructure:"log"`
 	*MysqlConfig `mapstructure:"mysql"`
 }
@@ -16,7 +17,7 @@ type LogConfig struct {
 type MysqlConfig struct {
 	Host     string `mapstructure:"host"`
 	User     string `mapstructure:"user"`
-	Port     string `mapstructure:"port"`
+	Port     int    `mapstructure:"port"`
 	Password string `mapstructure:"password"`
 	MaxOpen  int    `mapstructure:"maxopen"`
 	MaxFree  int    `mapstructure:"maxfree"`

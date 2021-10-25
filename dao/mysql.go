@@ -20,8 +20,7 @@ func MysqlInit(mysqlconf *model.MysqlConfig) (err error) {
 	)
 	db, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
-
-		return
+		return model.ErrorMysqlConnect
 	}
 	//确定最大的容纳量和空闲量
 	db.SetMaxOpenConns(mysqlconf.MaxOpen)

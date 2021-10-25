@@ -1,3 +1,10 @@
+name: "register"
+mode: "dev"
+port: 8080
+version: "0.0.1"
+start-time: "2021-10-24"
+machine: 1
+
 mysql:
   host: "127.0.0.1"
   user: "root"
@@ -8,7 +15,7 @@ mysql:
 
 log:
   filename: "daily.log"
-  level: "debug"
+  level: "info"
   max_size: 5
   max_age: 30
   max_backups: 5
