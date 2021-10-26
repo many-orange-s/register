@@ -1,24 +1,12 @@
 package model
 
-type Con struct {
-	Mode         string `mapstructure:"mode"`
-	*LogConfig   `mapstructure:"log"`
-	*MysqlConfig `mapstructure:"mysql"`
+type Sign struct {
+	Name     string `json:"name" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
-type LogConfig struct {
-	Filename   string `mapstructure:"filename"`
-	Level      string `mapstruture:"level"`
-	MaxSize    int    `mapstructure:"max_size"`
-	MaxAge     int    `mapstructure:"max_age"`
-	Maxbackups int    `mapstructure:"max_backups"`
-}
-
-type MysqlConfig struct {
-	Host     string `mapstructure:"host"`
-	User     string `mapstructure:"user"`
-	Port     int    `mapstructure:"port"`
-	Password string `mapstructure:"password"`
-	MaxOpen  int    `mapstructure:"maxopen"`
-	MaxFree  int    `mapstructure:"maxfree"`
+type Register struct {
+	Name       string `json:"name" binding:"required"`
+	Password   string `json:"password" binding:"required"`
+	Department string `json:"department" binding:"required"`
 }

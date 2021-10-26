@@ -8,12 +8,12 @@ var (
 	ErrorUnmarshalConf = errors.New("Conf反序列错误")
 )
 
-//Mysql error
-var (
-	ErrorMysqlConnect = errors.New("MySQL连接失败")
-)
+var ErrorMysqlConnect = errors.New("MySQL连接失败")
 
-//logger error
+var ErrorUnmarshalLevel = errors.New("Logger反序列化错误")
+
+//controller error
 var (
-	ErrorUnmarshalLevel = errors.New("Logger反序列化错误")
+	ErrorAdminExit = errors.New("用户已经存在")
+	ErrorToken     = errors.New("token 鉴别失败")
 )

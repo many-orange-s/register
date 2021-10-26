@@ -35,7 +35,7 @@ func Mysql(mysqlconf *model.MysqlConfig) (err error) {
 
 func MysqlInit(mysqlconf *model.MysqlConfig) (err error) {
 	//数据库的连接sqlx
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/admin?charset=utf8&parseTime=True&loc=Local",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/register?charset=utf8&parseTime=True&loc=Local",
 		mysqlconf.User,
 		mysqlconf.Password,
 		mysqlconf.Host,

@@ -1,4 +1,5 @@
 package respond
+
 type ReCode int64
 
 const (
@@ -6,6 +7,7 @@ const (
 	CodeParamInvalid
 	CodeParamFalse
 	CodeSystemBusy
+	CodeAdminExit
 )
 
 var codeMsgMap = map[ReCode]string{
@@ -13,6 +15,7 @@ var codeMsgMap = map[ReCode]string{
 	CodeParamInvalid: "Invalid params",
 	CodeParamFalse:   "The account number or password is incorrect",
 	CodeSystemBusy:   "The system is busy",
+	CodeAdminExit:    "The Admin has exited",
 }
 
 type RespondDate struct {

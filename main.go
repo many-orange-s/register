@@ -21,6 +21,7 @@ func main() {
 	err = logger.Init(setting.Conf.LogConfig, setting.Conf.Mode)
 	if err != nil {
 		log.Printf("%+v", err)
+		return
 	}
 	defer zap.L().Sync()
 
@@ -28,6 +29,7 @@ func main() {
 	err = dao.MysqlInit(setting.Conf.MysqlConfig)
 	if err != nil {
 		log.Printf("%+v", err)
+		return
 	}
 	defer dao.DBCloce()
 	//redis的初始化

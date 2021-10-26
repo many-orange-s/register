@@ -8,7 +8,7 @@ machine: 1
 mysql:
   host: "127.0.0.1"
   user: "root"
-  port : 3307
+  port : 3306
   password: "557320"
   maxopen: 100
   maxfree: 50
