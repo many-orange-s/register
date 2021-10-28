@@ -20,8 +20,8 @@ func SetUpRouter() *gin.Engine {
 		loginGroup.POST("/register", controller.AddAdmin)
 	}
 
-	oprationGroup := r.Group("/admin")
-	oprationGroup.Use(middleware.TokenAuthMiddle())
+	operationGroup := r.Group("/admin")
+	operationGroup.Use(middleware.TokenAuthMiddle())
 	{
 
 	}
