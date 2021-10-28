@@ -13,14 +13,14 @@ var db *sqlx.DB
 //这个是在登陆后管理者对数据库的操作
 var db1 *sqlx.DB
 
-func Mysql(mysqlconf *model.MysqlConfig) (err error) {
+func Mysql(mysqlconf *model.MysqlConfig, department string) (err error) {
 	//数据库的连接sqlx
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
 		mysqlconf.User,
 		mysqlconf.Password,
 		mysqlconf.Host,
 		mysqlconf.Port,
-	//token
+		department,
 	)
 	db, err = sqlx.Connect("mysql", dsn)
 	if err != nil {

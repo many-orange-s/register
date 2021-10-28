@@ -8,6 +8,9 @@ const (
 	CodeParamFalse
 	CodeSystemBusy
 	CodeAdminExit
+	CodeEmptyAuth
+	CodeAuthFormat
+	CodeTokenInvalid
 )
 
 var codeMsgMap = map[ReCode]string{
@@ -16,6 +19,9 @@ var codeMsgMap = map[ReCode]string{
 	CodeParamFalse:   "The account number or password is incorrect",
 	CodeSystemBusy:   "The system is busy",
 	CodeAdminExit:    "The Admin has exited",
+	CodeEmptyAuth:    "The Header's authorization is empty",
+	CodeAuthFormat:   "The Header's authorization format err",
+	CodeTokenInvalid: "Token is invalid",
 }
 
 type RespondDate struct {
