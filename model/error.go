@@ -19,5 +19,5 @@ var (
 )
 
 var (
-	ErrorNotExit = errors.New("Not exit")
+	ErrorRepeatModify = errors.New("重复修改")
 )

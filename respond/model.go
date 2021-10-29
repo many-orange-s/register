@@ -13,6 +13,7 @@ const (
 	CodeTokenInvalid
 	CodeMsgNotReceive
 	CodeHasNotExit
+	CodeRepeatModify
 )
 
 var codeMsgMap = map[ReCode]string{
@@ -26,6 +27,7 @@ var codeMsgMap = map[ReCode]string{
 	CodeSuccess:           "Success",
 	CodeMsgNotReceive:     "Can receive this massage",
 	CodeHasNotExit:        "Not exit",
+	CodeRepeatModify:      "Repeat modify",
 }
 
 type RespondDate struct {

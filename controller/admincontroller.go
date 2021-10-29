@@ -5,7 +5,6 @@ import (
 	"bluebull/logic"
 	"bluebull/model"
 	"bluebull/respond"
-	"database/sql"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -32,10 +31,6 @@ func ShowAData(c *gin.Context) {
 	department := c.GetString("department")
 	Msg, err := dao.ShowAData(department, name)
 	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			respond.Fail(c, respond.CodeHasNotExit)
-			return
-		}
 		zap.L().Error("dao.ShowAData err", zap.Error(err))
 		respond.Fail(c, respond.CodeSystemBusy)
 		return
@@ -65,8 +60,8 @@ func UpdateData(c *gin.Context) {
 
 	err = logic.Updata(department, NewMsg, id)
 	if err != nil {
-		if errors.Is(err, model.ErrorNotExit) {
-			respond.Fail(c, respond.CodeHasNotExit)
+		if errors.Is(err, model.ErrorRepeatModify) {
+			respond.Fail(c, respond.CodeRepeatModify)
 			return
 		}
 		zap.L().Error("dao.Update err", zap.Error(err))
