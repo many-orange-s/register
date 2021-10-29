@@ -35,9 +35,10 @@ func SearchData(department string, id string) (Msg *model.AllMsg, err error) {
 	return Msg, err
 }
 
-func Updata(department string, msg *model.Update, id string) (err error) {
+func Updata(department string, msg *model.Update, id string) (aff int64, err error) {
 	sqlStr := fmt.Sprintf("update %s set %s = ? where id = ?", department, msg.Target)
 	db.Rebind(sqlStr)
-	_, err = db.Exec(sqlStr, msg.UpdateDate, id)
+	ret, err := db.Exec(sqlStr, msg.UpdateDate, id)
+	aff, err = ret.RowsAffected()
 	return
 }

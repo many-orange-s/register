@@ -5,7 +5,6 @@ import (
 	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/jmoiron/sqlx"
-	"github.com/pkg/errors"
 )
 
 //这个是做注册时的数据操作
@@ -22,7 +21,7 @@ func MysqlInit(mysqlconf *model.MysqlConfig) (err error) {
 	)
 	db, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
-		return errors.Wrap(err, "")
+		return model.ErrorMysqlConnect
 	}
 	//确定最大的容纳量和空闲量
 	db.SetMaxOpenConns(mysqlconf.MaxOpen)

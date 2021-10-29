@@ -2,6 +2,7 @@ package controller
 
 import (
 	"bluebull/dao"
+	"bluebull/logic"
 	"bluebull/model"
 	"bluebull/respond"
 	"database/sql"
@@ -58,13 +59,16 @@ func UpdateData(c *gin.Context) {
 	NewMsg := new(model.Update)
 	err := c.BindJSON(NewMsg)
 	if err != nil {
-		zap.L().Error("Update Shouldbind err", zap.Error(err))
-		respond.Fail(c, respond.CodeHasNotExit)
+		respond.Fail(c, respond.CodeParamInvalid)
 		return
 	}
 
-	err = dao.Updata(department, NewMsg, id)
+	err = logic.Updata(department, NewMsg, id)
 	if err != nil {
+		if errors.Is(err, model.ErrorNotExit) {
+			respond.Fail(c, respond.CodeHasNotExit)
+			return
+		}
 		zap.L().Error("dao.Update err", zap.Error(err))
 		respond.Fail(c, respond.CodeSystemBusy)
 		return

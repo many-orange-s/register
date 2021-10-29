@@ -22,6 +22,6 @@ type AllMsg struct {
 }
 
 type Update struct {
-	Target     string `json:"target"`
-	UpdateDate string `json:"update_date"`
+	Target     string `json:"target" binding:"required"`
+	UpdateDate string `json:"update_date" binding:"required"`
 }

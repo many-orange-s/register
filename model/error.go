@@ -17,3 +17,7 @@ var (
 	ErrorAdminExit = errors.New("用户已经存在")
 	ErrorToken     = errors.New("token 鉴别失败")
 )
+
+var (
+	ErrorNotExit = errors.New("Not exit")
+)
