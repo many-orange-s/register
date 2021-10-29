@@ -11,10 +11,11 @@ const (
 	CodeEmptyAuth
 	CodeAuthFormat
 	CodeTokenInvalid
+	CodeMsgReceive
+	CodeHasNotExit
 )
 
 var codeMsgMap = map[ReCode]string{
-	CodeSuccess:      "Success",
 	CodeParamInvalid: "Invalid params",
 	CodeParamFalse:   "The account number or password is incorrect",
 	CodeSystemBusy:   "The system is busy",
@@ -22,6 +23,9 @@ var codeMsgMap = map[ReCode]string{
 	CodeEmptyAuth:    "The Header's authorization is empty",
 	CodeAuthFormat:   "The Header's authorization format err",
 	CodeTokenInvalid: "Token is invalid",
+	CodeSuccess:      "Success",
+	CodeMsgReceive:   "Can receive this massage",
+	CodeHasNotExit:   "Not exit",
 }
 
 type RespondDate struct {

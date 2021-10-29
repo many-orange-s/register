@@ -10,6 +10,7 @@ mysql:
   user: "root"
   port : 3306
   password: "557320"
+  Database: "register"
   maxopen: 100
   maxfree: 50
 

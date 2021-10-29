@@ -23,7 +23,16 @@ func SetUpRouter() *gin.Engine {
 	operationGroup := r.Group("/admin")
 	operationGroup.Use(middleware.TokenAuthMiddle())
 	{
-
+		//返回表中的所有信息
+		operationGroup.GET("/show", controller.ShowAllData)
+		//返回表中的一条信息
+		operationGroup.GET("/search/:name", controller.ShowAData)
+		//修改表中的一条数据
+		operationGroup.PUT("/update/:id", controller.UpdateData)
+		//添加表中的元素
+		//添加一个列
+		//删除一个列
+		//删除一条元素
 	}
 	return r
 }

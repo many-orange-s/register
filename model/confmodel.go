@@ -8,7 +8,7 @@ type Con struct {
 
 type LogConfig struct {
 	Filename   string `mapstructure:"filename"`
-	Level      string `mapstruture:"level"`
+	Level      string `mapstructure:"level"`
 	MaxSize    int    `mapstructure:"max_size"`
 	MaxAge     int    `mapstructure:"max_age"`
 	Maxbackups int    `mapstructure:"max_backups"`
@@ -19,6 +19,7 @@ type MysqlConfig struct {
 	User     string `mapstructure:"user"`
 	Port     int    `mapstructure:"port"`
 	Password string `mapstructure:"password"`
+	Database string `mapstructure:"database"`
 	MaxOpen  int    `mapstructure:"maxopen"`
 	MaxFree  int    `mapstructure:"maxfree"`
 }

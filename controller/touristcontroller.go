@@ -36,7 +36,7 @@ func AdminSign(c *gin.Context) {
 		respond.FailWithMsg(c, model.ErrorToken, 400)
 		return
 	}
-	respond.Success(c, tokenstring)
+	respond.SuccessWith(c, tokenstring)
 }
 
 func AddAdmin(c *gin.Context) {
@@ -57,11 +57,18 @@ func AddAdmin(c *gin.Context) {
 		return
 	}
 
+	err = dao.CreateForm(p.Department)
+	if err != nil {
+		zap.L().Error("dao.CreateForm err", zap.Error(err))
+		respond.Fail(c, respond.CodeSystemBusy)
+		return
+	}
+
 	err = dao.SignUp(p)
 	if err != nil {
 		zap.L().Error("dao.SignUp err", zap.Error(err))
 		respond.Fail(c, respond.CodeSystemBusy)
 		return
 	}
-	respond.Success(c, nil)
+	respond.Success(c)
 }

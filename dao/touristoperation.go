@@ -2,6 +2,7 @@ package dao
 
 import (
 	"bluebull/model"
+	"fmt"
 )
 
 func SelectAdmin(msg *model.Sign) (department string, err error) {
@@ -28,5 +29,21 @@ func SearchSame(name string) (exit bool, err error) {
 func SignUp(reg *model.Register) (err error) {
 	sqlStr := `insert into admin(name,password,department) values (?,?,?)`
 	_, err = db.Exec(sqlStr, reg.Name, reg.Password, reg.Department)
+	return
+}
+
+func CreateForm(department string) (err error) {
+	sqlStr := `create table if not exists %s (
+    id integer, 
+    name text,
+    gender text,
+    grade text,
+    birth text,                          
+    telephone text,
+    group_name text                          	
+	);`
+	sqlStr = fmt.Sprintf(sqlStr, department)
+	db.Rebind(sqlStr)
+	_, err = db.Exec(sqlStr)
 	return
 }

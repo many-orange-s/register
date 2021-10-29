@@ -13,7 +13,14 @@ func (r ReCode) getMsg() string {
 	return msg
 }
 
-func Success(c *gin.Context, data interface{}) {
+func Success(c *gin.Context) {
+	c.JSON(http.StatusOK, &RespondDate{
+		Code: CodeSuccess,
+		Msg:  CodeSuccess.getMsg(),
+	})
+}
+
+func SuccessWith(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusOK, &RespondDate{
 		Code: CodeSuccess,
 		Msg:  CodeSuccess.getMsg(),
