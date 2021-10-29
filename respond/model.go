@@ -9,23 +9,23 @@ const (
 	CodeSystemBusy
 	CodeAdminExit
 	CodeEmptyAuth
-	CodeAuthFormat
+	CodeAuthFormatInvalid
 	CodeTokenInvalid
-	CodeMsgReceive
+	CodeMsgNotReceive
 	CodeHasNotExit
 )
 
 var codeMsgMap = map[ReCode]string{
-	CodeParamInvalid: "Invalid params",
-	CodeParamFalse:   "The account number or password is incorrect",
-	CodeSystemBusy:   "The system is busy",
-	CodeAdminExit:    "The Admin has exited",
-	CodeEmptyAuth:    "The Header's authorization is empty",
-	CodeAuthFormat:   "The Header's authorization format err",
-	CodeTokenInvalid: "Token is invalid",
-	CodeSuccess:      "Success",
-	CodeMsgReceive:   "Can receive this massage",
-	CodeHasNotExit:   "Not exit",
+	CodeParamInvalid:      "Invalid params",
+	CodeParamFalse:        "The account number or password is incorrect",
+	CodeSystemBusy:        "The system is busy",
+	CodeAdminExit:         "The Admin has exited",
+	CodeEmptyAuth:         "The Header's authorization is empty",
+	CodeAuthFormatInvalid: "The Header's authorization format err",
+	CodeTokenInvalid:      "Token is invalid",
+	CodeSuccess:           "Success",
+	CodeMsgNotReceive:     "Can receive this massage",
+	CodeHasNotExit:        "Not exit",
 }
 
 type RespondDate struct {
