@@ -4,6 +4,7 @@ import (
 	"bluebull/model"
 	"database/sql"
 	"fmt"
+	"github.com/jmoiron/sqlx"
 )
 
 func ShowAllData(department string) (allMsg []*model.AllMsg, err error) {
@@ -40,5 +41,17 @@ func Updata(department string, msg *model.Update, id string) (ret sql.Result, er
 	sqlStr := fmt.Sprintf("update %s set %s = ? where id = ?", department, msg.Target)
 	db.Rebind(sqlStr)
 	ret, err = db.Exec(sqlStr, msg.UpdateDate, id)
+	return
+}
+
+func AddData(department string, msg []interface{}) (err error) {
+	sqlStr := fmt.Sprintf("insert into %s (name,gender,grade,birth,telephone,group_name) values (?)", department)
+	query, args, err := sqlx.In(sqlStr, msg)
+	if err != nil {
+		return
+	}
+
+	db.Rebind(query)
+	_, err = db.Exec(query, args...)
 	return
 }

@@ -70,3 +70,21 @@ func UpdateData(c *gin.Context) {
 	}
 	respond.Success(c)
 }
+
+func Add(c *gin.Context) {
+	msg := new(model.AllMsg)
+	err := c.ShouldBindJSON(msg)
+	if err != nil {
+		respond.Fail(c, respond.CodeParamInvalid)
+		return
+	}
+
+	department := c.GetString("department")
+	err = logic.AddMember(department, msg)
+	if err != nil {
+		zap.L().Error("logic.AddMember err", zap.Error(err))
+		respond.Fail(c, respond.CodeSystemBusy)
+		return
+	}
+	respond.Success(c)
+}

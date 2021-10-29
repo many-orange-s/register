@@ -18,3 +18,10 @@ func Updata(department string, NewMsg *model.Update, id string) (err error) {
 	}
 	return
 }
+
+func AddMember(department string, msg *model.AllMsg) (err error) {
+	var inf []interface{}
+	inf = append(inf, msg.Name, msg.Gender, msg.Grade, msg.Birth, msg.Telephone, msg.GroupName)
+	err = dao.AddData(department, inf)
+	return
+}
