@@ -25,7 +25,7 @@ func ShowAllData(c *gin.Context) {
 func ShowAData(c *gin.Context) {
 	name, ok := c.Params.Get("name")
 	if !ok {
-		respond.Fail(c, respond.CodeMsgReceive)
+		respond.Fail(c, respond.CodeMsgNotReceive)
 		return
 	}
 
@@ -50,7 +50,7 @@ func ShowAData(c *gin.Context) {
 func UpdateData(c *gin.Context) {
 	id, ok := c.Params.Get("id")
 	if !ok {
-		respond.Fail(c, respond.CodeMsgReceive)
+		respond.Fail(c, respond.CodeMsgNotReceive)
 		return
 	}
 

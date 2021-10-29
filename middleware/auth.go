@@ -22,7 +22,7 @@ func TokenAuthMiddle() func(c *gin.Context) {
 
 		parts := strings.SplitN(authHeader, " ", 2)
 		if !(len(parts) == 2 && parts[0] == "Bearer") {
-			respond.Fail(c, respond.CodeAuthFormat)
+			respond.Fail(c, respond.CodeAuthFormatInvalid)
 			c.Abort()
 			return
 		}
