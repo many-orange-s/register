@@ -27,6 +27,8 @@ func SetUpRouter() *gin.Engine {
 		operationGroup.GET("/show", controller.ShowAllData)
 		//返回表中的一条信息
 		operationGroup.GET("/search/:name", controller.ShowAData)
+		//返回表中一个组的元素
+		operationGroup.GET("/search/group/:groupname", controller.SearchGroup)
 		//修改表中的一条数据
 		operationGroup.PUT("/update/:id", controller.UpdateData)
 		//添加表中的元素

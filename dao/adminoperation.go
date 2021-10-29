@@ -27,10 +27,10 @@ func ShowAData(department string, name string) (Msg []*model.AllMsg, err error) 
 	return Msg, err
 }
 
-func SearchData(department string, id string) (Msg *model.AllMsg, err error) {
-	sqlStr := fmt.Sprintf("select * from %s where id = ?", department)
+func SearchGroup(department string, groupname string) (Msg []*model.AllMsg, err error) {
+	sqlStr := fmt.Sprintf("select * from %s where group_name = ?", department)
 	db.Rebind(sqlStr)
-	err = db.Get(&Msg, sqlStr, id)
+	err = db.Select(&Msg, sqlStr, groupname)
 	if err != nil {
 		return nil, err
 	}

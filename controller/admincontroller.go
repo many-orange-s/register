@@ -71,6 +71,27 @@ func UpdateData(c *gin.Context) {
 	respond.Success(c)
 }
 
+func SearchGroup(c *gin.Context) {
+	groupname, ok := c.Params.Get("groupname")
+	if !ok {
+		respond.Fail(c, respond.CodeMsgNotReceive)
+		return
+	}
+
+	department := c.GetString("department")
+	msg, err := dao.SearchGroup(department, groupname)
+	if err != nil {
+		zap.L().Error("dao.SearchGroup err", zap.Error(err))
+		respond.Fail(c, respond.CodeSystemBusy)
+		return
+	}
+	if msg == nil && err == nil {
+		respond.Fail(c, respond.CodeHasNotExit)
+		return
+	}
+	respond.SuccessWith(c, msg)
+}
+
 func Add(c *gin.Context) {
 	msg := new(model.AllMsg)
 	err := c.ShouldBindJSON(msg)
