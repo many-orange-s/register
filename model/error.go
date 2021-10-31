@@ -20,4 +20,5 @@ var (
 
 var (
 	ErrorRepeatModify = errors.New("重复修改")
+	ErrorAdminNotExit = errors.New("用户不存在")
 )

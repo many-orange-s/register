@@ -11,17 +11,18 @@ type Register struct {
 	Department string `json:"department" binding:"required" db:"department"`
 }
 
+// AllMsg 注意都要打*号 可以防止空的时候无法传递
 type AllMsg struct {
-	Id        int    `json:"id" db:"id"`
-	Name      string `json:"name" db:"name"`
-	Gender    string `json:"gender" db:"gender"`
-	Grade     string `json:"grade" db:"grade"`
-	Birth     string `json:"birth" db:"birth"`
-	Telephone string `json:"telephone" db:"telephone"`
-	GroupName string `json:"group_name" db:"group_name"`
+	Id        *int    `json:"id" db:"id"`
+	Name      *string `json:"name" db:"name"`
+	Gender    *string `json:"gender" db:"gender"`
+	Grade     *string `json:"grade" db:"grade"`
+	Birth     *string `json:"birth" db:"birth"`
+	Telephone *string `json:"telephone" db:"telephone"`
+	GroupName *string `json:"group_name" db:"group_name"`
 }
 
 type Update struct {
 	Target     string `json:"target" binding:"required"`
-	UpdateDate string `json:"update_date" binding:"required"`
+	UpdateData string `json:"update_data" binding:"required"`
 }

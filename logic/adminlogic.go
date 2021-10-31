@@ -25,3 +25,16 @@ func AddMember(department string, msg *model.AllMsg) (err error) {
 	err = dao.AddData(department, inf)
 	return
 }
+
+func Delete(department string, id string) (err error) {
+	ret, err := dao.Delete(department, id)
+	if err != nil {
+		return
+	}
+
+	aff, err := ret.RowsAffected()
+	if aff == 0 {
+		return model.ErrorAdminNotExit
+	}
+	return
+}

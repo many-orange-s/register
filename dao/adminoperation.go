@@ -18,7 +18,7 @@ func ShowAllData(department string) (allMsg []*model.AllMsg, err error) {
 }
 
 func ShowAData(department string, name string) (Msg []*model.AllMsg, err error) {
-	sqlStr := fmt.Sprintf("select * from %s where name = ?", department)
+	sqlStr := fmt.Sprintf("select * from %s where name in (?)", department)
 	db.Rebind(sqlStr)
 	err = db.Select(&Msg, sqlStr, name)
 	if err != nil {
@@ -40,7 +40,7 @@ func SearchGroup(department string, groupname string) (Msg []*model.AllMsg, err 
 func Updata(department string, msg *model.Update, id string) (ret sql.Result, err error) {
 	sqlStr := fmt.Sprintf("update %s set %s = ? where id = ?", department, msg.Target)
 	db.Rebind(sqlStr)
-	ret, err = db.Exec(sqlStr, msg.UpdateDate, id)
+	ret, err = db.Exec(sqlStr, msg.UpdateData, id)
 	return
 }
 
@@ -53,5 +53,11 @@ func AddData(department string, msg []interface{}) (err error) {
 
 	db.Rebind(query)
 	_, err = db.Exec(query, args...)
+	return
+}
+
+func Delete(department string, id string) (ret sql.Result, err error) {
+	sqlStr := fmt.Sprintf("delete from %s where id = ?", department)
+	ret, err = db.Exec(sqlStr, id)
 	return
 }

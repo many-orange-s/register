@@ -32,10 +32,9 @@ func SetUpRouter() *gin.Engine {
 		//修改表中的一条数据
 		operationGroup.PUT("/update/:id", controller.UpdateData)
 		//添加表中的元素
-		operationGroup.POST("add", controller.Add)
-		//添加一个列
-		//删除一个列
+		operationGroup.POST("/add", controller.Add)
 		//删除一条元素
+		operationGroup.DELETE("/delete/:id", controller.DeleteData)
 	}
 	return r
 }

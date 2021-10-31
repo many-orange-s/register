@@ -109,3 +109,24 @@ func Add(c *gin.Context) {
 	}
 	respond.Success(c)
 }
+
+func DeleteData(c *gin.Context) {
+	id, ok := c.Params.Get("id")
+	if !ok {
+		respond.Fail(c, respond.CodeMsgNotReceive)
+		return
+	}
+
+	department := c.GetString("department")
+	err := logic.Delete(department, id)
+	if err != nil {
+		if errors.Is(err, model.ErrorAdminNotExit) {
+			respond.Fail(c, respond.CodeHasNotExit)
+			return
+		}
+		respond.Fail(c, respond.CodeSystemBusy)
+		zap.L().Error("logic.Delete err", zap.Error(err))
+		return
+	}
+	respond.Success(c)
+}
