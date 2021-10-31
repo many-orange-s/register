@@ -59,7 +59,11 @@ func AddAdmin(c *gin.Context) {
 
 	err = dao.CreateForm(p.Department)
 	if err != nil {
-		zap.L().Error("dao.CreateForm err", zap.Error(err))
+		if errors.Is(err, model.ErrorTableReadFail) {
+			zap.L().Error("dao.CreateForm table read err", zap.Error(err))
+		} else {
+			zap.L().Error("dao.CreateForm err", zap.Error(err))
+		}
 		respond.Fail(c, respond.CodeSystemBusy)
 		return
 	}
