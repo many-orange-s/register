@@ -3,6 +3,7 @@ package dao
 import (
 	"bluebull/model"
 	"fmt"
+	"io/ioutil"
 )
 
 func SelectAdmin(msg *model.Sign) (department string, err error) {
@@ -33,17 +34,12 @@ func SignUp(reg *model.Register) (err error) {
 }
 
 func CreateForm(department string) (err error) {
-	sqlStr := `create table if not exists %s (
-    id integer, 
-    name text,
-    gender text,
-    grade text,
-    birth text,                          
-    telephone text,
-    group_name text                          	
-	);`
+	sqlBytes, err := ioutil.ReadFile("./table.sql")
+	if err != nil {
+		return model.ErrorTableReadFail
+	}
+	sqlStr := string(sqlBytes)
 	sqlStr = fmt.Sprintf(sqlStr, department)
-	db.Rebind(sqlStr)
 	_, err = db.Exec(sqlStr)
 	return
 }
