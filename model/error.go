@@ -1,5 +1,6 @@
 package model
 
+/*这里面只放在后端传输错误参数*/
 import "github.com/pkg/errors"
 
 //setting error
