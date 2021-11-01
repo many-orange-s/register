@@ -1,5 +1,7 @@
 package respond
 
+/*里面只放返回参数*/
+
 type ReCode int64
 
 const (

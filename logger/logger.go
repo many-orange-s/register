@@ -38,11 +38,11 @@ func Init(logconf *model.LogConfig, mode string) (err error) {
 	//mode决定输出
 	var core zapcore.Core
 	if mode == "dev" {
-		//获取在可以看懂的
+		//获取到终端上
 		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
 		core = zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel)
 	} else {
-		//三个变量结合
+		//获取到日志中
 		core = zapcore.NewCore(encoder, writersyncer, l)
 	}
 

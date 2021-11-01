@@ -1,5 +1,8 @@
 package model
 
+/*这个里面只放配置文件的结构体参数*/
+
+// Con mapstructure 是反序列话的那个库
 type Con struct {
 	Mode         string `mapstructure:"mode"`
 	*LogConfig   `mapstructure:"log"`

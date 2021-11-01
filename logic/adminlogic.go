@@ -32,6 +32,7 @@ func Delete(department string, id string) (err error) {
 		return
 	}
 
+	//判断是否存在
 	aff, err := ret.RowsAffected()
 	if aff == 0 {
 		return model.ErrorAdminNotExit

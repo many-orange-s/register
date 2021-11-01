@@ -30,6 +30,7 @@ func MysqlInit(mysqlconf *model.MysqlConfig) (err error) {
 	return
 }
 
+// DBCloce 对外暴露关闭
 func DBCloce() {
 	db.Close()
 }

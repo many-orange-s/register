@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// GetToken token的获取
 func GetToken(department string) (string, error) {
 	msg := Token{
 		department,
@@ -20,7 +21,9 @@ func GetToken(department string) (string, error) {
 	return token.SignedString(MySecret)
 }
 
+// ParseToken 解析token
 func ParseToken(tokenstring string) (*Token, error) {
+	//验证密码
 	tokenmsg := new(Token)
 	token, err := jwt.ParseWithClaims(tokenstring, tokenmsg, func(token *jwt.Token) (interface{}, error) {
 		return MySecret, nil
@@ -29,6 +32,7 @@ func ParseToken(tokenstring string) (*Token, error) {
 		return nil, err
 	}
 
+	//二次判断
 	if token.Valid {
 		return tokenmsg, nil
 	}

@@ -9,6 +9,7 @@ import (
 
 var Conf = new(model.Con)
 
+// Init 日志初始化
 func Init() (err error) {
 	//配置文件的位置
 	viper.SetConfigFile("./config.yml")

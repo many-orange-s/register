@@ -1,5 +1,6 @@
 package respond
 
+/*里面只放返回方法*/
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"

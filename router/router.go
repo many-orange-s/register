@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// SetUpRouter 路由
 func SetUpRouter() *gin.Engine {
 	r := gin.New()
 	r.Use(logger.GinLogger(), logger.GinRecover(true))

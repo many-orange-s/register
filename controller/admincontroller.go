@@ -10,6 +10,7 @@ import (
 	"go.uber.org/zap"
 )
 
+// ShowAllData 展示表中所有信息
 func ShowAllData(c *gin.Context) {
 	department := c.GetString("department")
 	allMsg, err := dao.ShowAllData(department)
@@ -21,6 +22,7 @@ func ShowAllData(c *gin.Context) {
 	respond.SuccessWith(c, allMsg)
 }
 
+// ShowAData 展示一种信息
 func ShowAData(c *gin.Context) {
 	name, ok := c.Params.Get("name")
 	if !ok {
@@ -42,6 +44,7 @@ func ShowAData(c *gin.Context) {
 	respond.SuccessWith(c, Msg)
 }
 
+// UpdateData 更新信息
 func UpdateData(c *gin.Context) {
 	id, ok := c.Params.Get("id")
 	if !ok {
@@ -71,6 +74,7 @@ func UpdateData(c *gin.Context) {
 	respond.Success(c)
 }
 
+// SearchGroup 用小组来展示信息
 func SearchGroup(c *gin.Context) {
 	groupname, ok := c.Params.Get("groupname")
 	if !ok {
@@ -85,6 +89,7 @@ func SearchGroup(c *gin.Context) {
 		respond.Fail(c, respond.CodeSystemBusy)
 		return
 	}
+	//如果找不到不会报错 所以再来一个判断
 	if msg == nil && err == nil {
 		respond.Fail(c, respond.CodeHasNotExit)
 		return
@@ -92,6 +97,7 @@ func SearchGroup(c *gin.Context) {
 	respond.SuccessWith(c, msg)
 }
 
+// Add 加入用户信息
 func Add(c *gin.Context) {
 	msg := new(model.AllMsg)
 	err := c.ShouldBindJSON(msg)
@@ -110,6 +116,7 @@ func Add(c *gin.Context) {
 	respond.Success(c)
 }
 
+// DeleteData 删除信息
 func DeleteData(c *gin.Context) {
 	id, ok := c.Params.Get("id")
 	if !ok {

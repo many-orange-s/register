@@ -12,6 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
+// AdminSign 用户登录并返回token
 func AdminSign(c *gin.Context) {
 	p := new(model.Sign)
 	if err := c.ShouldBindJSON(p); err != nil {
@@ -39,6 +40,7 @@ func AdminSign(c *gin.Context) {
 	respond.SuccessWith(c, tokenstring)
 }
 
+// AddAdmin 加入用户信息并建表
 func AddAdmin(c *gin.Context) {
 	p := new(model.Register)
 	if err := c.ShouldBind(p); err != nil {
